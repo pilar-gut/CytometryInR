@@ -1,0 +1,33 @@
+#PROBLEM 1
+list.files("G:/")
+target_path <- "G:/TargetFolder"
+dir.exists(target_path)
+list.files("G:/", full.names=TRUE)
+list.files("G:/TargetFolder", full.names=TRUE)
+source_path <- fcs_dir
+fcs_files <- list.files(source_path, pattern=".fcs", full.names=TRUE)
+fcs_files
+file.copy(from=fcs_files, to=target_path)
+
+
+#PROBLEM 2
+files_all <- list.files(path=source_path, full.names=TRUE, recursive=TRUE) #to see the contents of the "fcs" folder
+files_all
+dirname() #to extract unique directory names
+dirs <- dirname(files_all)
+dirs
+unique_dirs <- unique(dirs) #to keep each folder once
+unique_dirs
+
+#PROBLEM 3
+system.file("extdata", package="FlowSOM") #[1] ".../AppData/Local/Programs/R/R-4.5.2/library/FlowSOM/extdata"
+system.file("extdata", package="flowWorkspace") #[1] ".../AppData/Local/Programs/R/R-4.5.2/library/flowWorkspace/extdata"
+
+flowSOM_path <- system.file(package="FlowSOM")
+flowSOM_fcs <- list.files(path=flowSOM_path, pattern=".fcs", full.names=TRUE, recursive=TRUE)
+flowSOM_fcs #[1] ".../AppData/Local/Programs/R/R-4.5.2/library/FlowSOM/extdata/68983.fcs"
+
+flowWorkspace_path <- system.file(package="flowWorkspace")
+flowWorkspace_fcs <- list.files(path=flowWorkspace_path, pattern=".fcs", full.names=TRUE, recursive=TRUE)
+flowWorkspace_fcs #character(0) because there are no fcs files on the folder of this package
+
